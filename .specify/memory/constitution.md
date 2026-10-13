@@ -1,50 +1,32 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Portfólio de Data Science Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Stack Tecnológica (Astro + Vanilla)
+O projeto utilizará o framework **Astro** EXCLUSIVAMENTE para a estruturação de componentes (Layouts), sistema de rotas (file-based routing) e build estático. 
+- O estilo DEVE permanecer em CSS3 puro (Vanilla), sem Tailwind ou pré-processadores.
+- A interatividade no navegador (client-side) DEVE permanecer em Vanilla JS (ES6+).
+- É estritamente proibida a instalação de integrações de UI como React, Vue, Svelte ou bibliotecas de componentes externas.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Separação de Preocupações (Astro Components)
+Os arquivos `.astro` devem ser usados para encapsular o HTML e importar os estilos/scripts. O CSS global e a lógica de UI devem continuar isolados em arquivos dedicados em `public/assets/css/` e `public/assets/js/`.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Design e Identidade Visual (Sci-Fi / Cyberpunk HUD)
+O design deve adotar uma estética futurista "Sci-Fi / Cyberpunk HUD". 
+- **Fundo**: Temas escuros profundos (Dark Mode absoluto) com elementos de interface que remetem a painéis de dados.
+- **Geometria**: Uso intensivo de propriedades como `clip-path: polygon()` para criar botões, cards e contêineres com cantos cortados/chanfrados.
+- **Iluminação (Neon)**: As bordas dos elementos ativos, cards e botões devem emitir brilho (glow) utilizando múltiplas camadas de `box-shadow` e `text-shadow` em tons de Ciano e Roxo. É estritamente proibido o uso de Glassmorphism (efeito de vidro fosco).
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Sistema de Cores e Theming (Single Source of Truth)
+Todas as cores e gradientes do site DEVEM ser obrigatoriamente consumidos através de variáveis nativas do CSS (CSS Custom Properties). A única fonte de verdade para a paleta de cores é o arquivo `public/assets/css/colors.css`. É terminantemente proibido o uso de cores "hardcoded" diretamente nos outros arquivos de estilo.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Padrões de Arquitetura de Conteúdo
+A arquitetura deve ser modular e baseada no sistema de rotas do Astro (File-based Routing). A criação de novas pastas e arquivos `.astro` dentro de `src/pages/` gerará automaticamente as páginas do site. O site compartilhará um Layout comum que contém o menu principal e a identidade visual fixos.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow & Git Conventions
+O controle de versão (Git), a criação de branches, commits, Issues e Pull Requests são de responsabilidade EXCLUSIVA do desenvolvedor humano. O agente de IA NÃO DEVE executar comandos `git` ou `gh` em nenhuma circunstância. A atuação da IA é estritamente restrita a ler as especificações e gerar/modificar os arquivos de código e configuração localmente.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Esta Constituição atua como a lei primária do projeto e sobrepõe quaisquer outras práticas de desenvolvimento ou sugestões da IA. O agente de desenvolvimento (Antigravity/GSK) DEVE validar a conformidade do código contra este documento antes de finalizar qualquer arquivo. 
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.3.0 | **Ratified**: 2026-10-13 | **Last Amended**: 2026-10-13

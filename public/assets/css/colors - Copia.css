@@ -1,0 +1,53 @@
+:root {
+  /* ==========================================================================
+     Paleta Oficial do Projeto (Single Source of Truth)
+     Baseada na nova paleta de cores: Deep Twilight, Egyptian Blue, Glaucous,
+     Powder Blue, Pale Sky e Alabaster Grey.
+     ========================================================================== */
+  --alabaster-grey: #e6e5e0ff;
+  --deep-twilight: #230462ff;
+  --egyptian-blue: #203590ff;
+  --glaucous: #6083c5ff;
+  --powder-blue: #96b8dbff;
+  --pale-sky: #c5dbf0ff;
+
+  /* ==========================================================================
+     Aplicações Semânticas e Hierarquia de Texto
+     ========================================================================== */
+  --bg-primary: var(--deep-twilight);
+  --bg-secondary: var(--egyptian-blue);
+  --text-main: var(--alabaster-grey);
+  --text-muted: var(--powder-blue);
+  --text-heading: var(--pale-sky);
+  --accent-color: var(--powder-blue);
+  --accent-hover: var(--pale-sky);
+
+  /* Identidade Profissional (Brand) */
+  --brand-name-color: var(--pale-sky);
+  --brand-role-color: var(--powder-blue);
+  --brand-avatar-border: var(--powder-blue);
+  --brand-avatar-border-hover: var(--pale-sky);
+  --brand-avatar-bg: var(--egyptian-blue);
+
+  /* Navegação e Links */
+  --nav-link-color: var(--powder-blue);
+  --nav-link-hover: var(--alabaster-grey);
+  --nav-link-active: var(--pale-sky);
+  --nav-border-active: var(--glaucous);
+  --nav-toggle-color: var(--pale-sky);
+
+  /* Gradientes de Fundo */
+  --bg-glow-1: rgba(32, 53, 144, 0.5);
+  --bg-glow-2: rgba(96, 131, 197, 0.3);
+
+  /* ==========================================================================
+     Glassmorphism Específico (Refletindo a nova paleta de cores)
+     ========================================================================== */
+  --glass-bg: rgba(35, 4, 98, 0.78);
+  --glass-bg-card: rgba(32, 53, 144, 0.38);
+  --glass-bg-hover: rgba(96, 131, 197, 0.22);
+  --glass-border: rgba(197, 219, 240, 0.2);
+  --glass-border-hover: rgba(197, 219, 240, 0.45);
+  --glass-shadow: 0 8px 32px 0 rgba(15, 2, 45, 0.45);
+  --glass-glow: 0 0 20px rgba(96, 131, 197, 0.35);
+}
