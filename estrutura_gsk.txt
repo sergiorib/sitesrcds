@@ -1,0 +1,229 @@
+================================================================================
+ESTRUTURA DE PASTAS E ARQUIVOS - GOOGLE SPEC KIT (GSK / SPEC-KIT COM GEMINI)
+Diretório: C:\github\sitesrcds
+Data de Geração: 10/10/2026
+================================================================================
+
+1. VISÃO GERAL DO SPEC KIT / GOOGLE SPEC KIT (GSK)
+--------------------------------------------------------------------------------
+O Spec Kit (desenvolvido no ecossistema do GitHub/Specify e integrado aqui com a IA
+Google Gemini, compondo a stack GSK / Google Spec Kit) é uma ferramenta voltada para o
+desenvolvimento orientado por especificações (Spec-Driven Development - SDD).
+
+O objetivo central do GSK é transformar ideias e requisitos em software funcional
+através de um fluxo disciplinado e automatizado em etapas:
+  1. Constituição: Regras arquiteturais e princípios inegociáveis do projeto.
+  2. Especificação (/speckit.specify): Foco no "O QUE" e "POR QUE" (User Stories e critérios de aceite).
+  3. Esclarecimento (/speckit.clarify): Resolução de dúvidas e ambiguidades.
+  4. Planejamento (/speckit.plan): Definição de arquitetura técnica, tecnologias e contratos.
+  5. Tarefas (/speckit.tasks): Decomposição do plano em tarefas atômicas e ordenadas.
+  6. Implementação (/speckit.implement): Escrita de código e testes com base estrita nas tarefas.
+  7. Validação e Convergência (/speckit.analyze, /speckit.converge): Garantia de conformidade entre código e especificações.
+
+
+================================================================================
+2. MAPA / ÁRVORE DE DIRETÓRIOS E ARQUIVOS
+================================================================================
+
+c:\github\sitesrcds\
+├── .git\                                  [Diretório de controle de versão Git]
+├── .gemini\                               [Configurações e comandos do assistente Google Gemini]
+│   └── commands\
+│       ├── speckit.analyze.toml           [Comando: análise de coerência entre artefatos]
+│       ├── speckit.checklist.toml         [Comando: checklist de qualidade e requisitos]
+│       ├── speckit.clarify.toml           [Comando: esclarecimento interativo de dúvidas]
+│       ├── speckit.constitution.toml      [Comando: criação/atualização da constituição]
+│       ├── speckit.converge.toml          [Comando: convergência entre spec, plano e código]
+│       ├── speckit.implement.toml         [Comando: execução e implementação das tarefas]
+│       ├── speckit.plan.toml              [Comando: geração do plano arquitetural técnico]
+│       ├── speckit.specify.toml           [Comando: criação da especificação funcional da feature]
+│       ├── speckit.tasks.toml             [Comando: geração da lista detalhada de tarefas]
+│       └── speckit.taskstoissues.toml     [Comando: conversão de tarefas em issues no rastreador]
+└── .specify\                              [Núcleo de templates, scripts e configurações do Spec Kit]
+    ├── .gitignore                         [Regras de exclusão do Git específicas do Spec Kit]
+    ├── init-options.json                  [Opções utilizadas na inicialização do repositório]
+    ├── integration.json                   [Definições da integração ativa (Gemini / PowerShell)]
+    ├── integrations\
+    │   ├── gemini.manifest.json           [Manifesto e hashes dos arquivos da integração Gemini]
+    │   └── speckit.manifest.json          [Manifesto e hashes dos arquivos base do Spec Kit]
+    ├── memory\
+    │   ├── .constitution-template.json    [Metadados da versão do template da constituição]
+    │   └── constitution.md                [Constituição do projeto: princípios e regras técnicas]
+    ├── scripts\
+    │   └── powershell\
+    │       ├── check-prerequisites.ps1    [Verificação de pré-requisitos do ambiente]
+    │       ├── common.ps1                 [Biblioteca de funções auxiliares do PowerShell]
+    │       ├── create-new-feature.ps1     [Automação para criar branches e pastas de features]
+    │       ├── resolve-template.ps1       [Resolução e fallback de templates]
+    │       ├── setup-plan.ps1             [Scaffolding dos arquivos da fase de planejamento]
+    │       └── setup-tasks.ps1            [Scaffolding dos arquivos da fase de tarefas]
+    ├── templates\
+    │   ├── checklist-template.md          [Template para checklists de qualidade de requisitos]
+    │   ├── constitution-template.md       [Template base para elaboração da constituição]
+    │   ├── plan-template.md               [Template para o plano técnico de implementação]
+    │   ├── spec-template.md               [Template para a especificação funcional de features]
+    │   └── tasks-template.md              [Template para listas de tarefas organizadas por User Story]
+    └── workflows\
+        ├── workflow-registry.json         [Registro de workflows disponíveis no Spec Kit]
+        └── speckit\
+            └── workflow.yml               [Definição formal do workflow do ciclo completo SDD]
+
+
+================================================================================
+3. DETALHAMENTO DE CADA PASTA E ARQUIVO
+================================================================================
+
+--------------------------------------------------------------------------------
+[PASTA] .git/
+--------------------------------------------------------------------------------
+Contém todo o histórico de versionamento, branches, commits e configurações do repositório Git local.
+
+
+--------------------------------------------------------------------------------
+[PASTA] .gemini/
+--------------------------------------------------------------------------------
+Diretório reservado para a integração com o modelo de inteligência artificial Google Gemini.
+Define como o Gemini deve se comportar e quais comandos slash/prompts ficam disponíveis no ambiente.
+
+  [PASTA] .gemini/commands/
+  Armazena os arquivos de configuração TOML que descrevem os comandos slash expostos para o Gemini.
+
+  • speckit.analyze.toml:
+    Comando executado para validar a integridade cruzada dos artefatos (se o que está no spec.md bate
+    com o plan.md e tasks.md). Identifica inconsistências, lacunas e discrepâncias antes do código.
+
+  • speckit.checklist.toml:
+    Gera e valida checklists de qualidade para os artefatos. Garante que os requisitos não possuam
+    detalhes de implementação prematuros e atendam a critérios claros de aceitação.
+
+  • speckit.clarify.toml:
+    Comando interativo para resolver pontos ambíguos ou marcações [NEEDS CLARIFICATION] presentes
+    na especificação, formulando perguntas objetivas para o usuário com opções de múltipla escolha.
+
+  • speckit.constitution.toml:
+    Comando para inicializar ou atualizar a Constituição do Projeto (.specify/memory/constitution.md),
+    garantindo que todas as decisões respeitem os padrões estabelecidos pela equipe.
+
+  • speckit.converge.toml:
+    Comando de reconciliação que compara a implementação já realizada com as especificações e o
+    plano original, garantindo que o software construído reflita fielmente o que foi projetado.
+
+  • speckit.implement.toml:
+    Instrui a IA a executar as tarefas sequenciais definidas em tasks.md, respeitando o princípio
+    de Test-Driven Development (TDD) e aplicando as modificações no código-fonte.
+
+  • speckit.plan.toml:
+    Converte a especificação funcional em um plano técnico de arquitetura (plan.md), estruturando
+    escolha de bibliotecas, modelos de dados, contratos de API e divisão de pastas.
+
+  • speckit.specify.toml:
+    Comando principal de entrada da feature. Recebe a descrição em linguagem natural e gera a
+    especificação inicial estruturada (spec.md) com User Stories, critérios de aceite e escopo.
+
+  • speckit.tasks.toml:
+    Processa a especificação e o plano técnico para gerar uma lista acionável e ordenada de tarefas
+    atômicas (tasks.md), agrupadas por história de usuário para viabilizar entregas iterativas (MVP).
+
+  • speckit.taskstoissues.toml:
+    Exporta a lista de tarefas gerada em tasks.md diretamente para o sistema de issues do repositório
+    (ex: GitHub Issues), facilitando o rastreamento por membros da equipe humana.
+
+
+--------------------------------------------------------------------------------
+[PASTA] .specify/
+--------------------------------------------------------------------------------
+É o coração da infraestrutura do Spec Kit. Guarda estados, configurações, regras, scripts operacionais,
+templates reutilizáveis e definições de workflows.
+
+  • .gitignore:
+    Configuração do Git para evitar o commit de arquivos temporários, caches de execução ou arquivos
+    locais gerados dinamicamente durante as sessões do Spec Kit.
+
+  • init-options.json:
+    Registra os parâmetros fornecidos quando o Spec Kit foi inicializado neste repositório.
+    Exemplo: "ai": "gemini", "feature_numbering": "sequential", "script": "ps", "speckit_version": "1.1.4.dev0".
+
+  • integration.json:
+    Configurações ativas de integração da IA. Define o Gemini como o assistente padrão, usando o
+    PowerShell como interpretador de scripts auxiliares e '.' como separador de comandos.
+
+  [PASTA] .specify/integrations/
+  Mantém o catálogo e rastreamento das integrações instaladas no projeto.
+
+  • gemini.manifest.json:
+    Manifesto contendo as versões, data de instalação e hashes SHA-256 de cada comando TOML instalado
+    na pasta .gemini/commands/. Permite validação de integridade e atualizações limpas.
+
+  • speckit.manifest.json:
+    Manifesto com os hashes e lista de arquivos essenciais do próprio Spec Kit (scripts e templates).
+
+  [PASTA] .specify/memory/
+  Memória de longo prazo e contexto persistente compartilhado entre todas as execuções de features.
+
+  • .constitution-template.json:
+    Metadados e referências sobre a versão do template utilizado para construir a constituição.
+
+  • constitution.md:
+    Documento fundamental do repositório. Define princípios inegociáveis, padrões arquiteturais (ex:
+    TDD obrigatório, Library-First, observabilidade, convenções de versionamento e regras de governança).
+
+  [PASTA] .specify/scripts/powershell/
+  Scripts de automação utilizados pelo assistente e pelos workflows em ambientes Windows/PowerShell.
+
+  • check-prerequisites.ps1:
+    Verifica se ferramentas necessárias (Git, PowerShell 5.1+, utilitários CLI) estão presentes e operacionais.
+
+  • common.ps1:
+    Módulo com rotinas compartilhadas: logging estruturado, manipulação de JSON, tratamento de erros,
+    busca de pastas de features e funções utilitárias do Git.
+
+  • create-new-feature.ps1:
+    Automatiza a criação de novas features: calcula o próximo número sequencial (ex: 001-...), cria
+    o branch Git correspondente e inicializa a pasta specs/NNN-nome-da-feature.
+
+  • resolve-template.ps1:
+    Mecanismo de resolução de templates que busca por templates personalizados do projeto antes
+    de usar os templates padrão de fábrica.
+
+  • setup-plan.ps1:
+    Prepara o ambiente e arquivos necessários para a fase de planejamento técnico de uma feature.
+
+  • setup-tasks.ps1:
+    Prepara os arquivos e estrutura para a fase de decomposição de tarefas.
+
+  [PASTA] .specify/templates/
+  Modelos padronizados em Markdown utilizados para criar novos artefatos durante o desenvolvimento.
+
+  • checklist-template.md:
+    Modelo para criar listas de checagem de qualidade, conformidade com a constituição e critérios de aceite.
+
+  • constitution-template.md:
+    Modelo original utilizado para preencher a constituição do repositório.
+
+  • plan-template.md:
+    Modelo para o plano técnico de implementação (plan.md), incluindo contexto tecnológico, estrutura
+    de arquivos proposta, testes e controle de complexidade.
+
+  • spec-template.md:
+    Modelo para a especificação funcional (spec.md), contendo User Stories priorizadas (P1, P2, P3),
+    cenários Given/When/Then, requisitos funcionais (FR-xxx) e critérios de sucesso mensuráveis (SC-xxx).
+
+  • tasks-template.md:
+    Modelo para a lista de tarefas (tasks.md). Organiza fases de setup, fundação, e tarefas por história
+    de usuário com identificadores únicos (ex: T001, T002) e flags de paralelismo ([P]).
+
+  [PASTA] .specify/workflows/
+  Armazena definições de pipelines declarativos que conectam os comandos em sequências governadas.
+
+  • workflow-registry.json:
+    Catálogo de workflows registrados e suas versões instaladas no projeto.
+
+  • speckit/workflow.yml:
+    Pipeline do ciclo de vida completo de desenvolvimento de software orientado a especificações
+    (Full SDD Cycle). Conecta:
+      1. specify   -> Gera spec.md
+      2. gate      -> Aprovação humana do spec
+      3. plan      -> Gera plan.md
+      4. gate      -> Aprovação humana do plano técnico
+      5. tasks     -> Gera tasks.md
+      6. implement -> Executa o código e testes com a IA
