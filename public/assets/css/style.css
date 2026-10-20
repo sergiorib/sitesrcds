@@ -1,419 +1,685 @@
 /* ==========================================================================
-   Estética Sci-Fi / Cyberpunk HUD - Vanilla CSS3
-   Google Fonts: 'Orbitron' (títulos/menus/HUD) e 'Rajdhani' (corpo/dados)
+   Dark Tech Dashboard - Vanilla CSS3
+   Identidade Visual: Dark Tech / Developer Dashboard
+   Constituição v4.0.0 | specs/001-estrutura-base/spec.md
+   Single Source of Truth de Cores: /assets/css/colors.css
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+/* Importação Google Fonts: Roboto Condensed (Títulos) + JetBrains Mono (Tech/Corpo/Menu) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Roboto+Condensed:wght@400;600;700;800;900&display=swap');
 
 /* ==========================================================================
    Reset e Configurações Globais
    ========================================================================== */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.1rem;
-  background-color: var(--bg-deep-space);
-  color: var(--text-primary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-main);
+  color: var(--text-secondary);
+  font-family: var(--font-tech);
+  font-size: 1rem;
   line-height: 1.6;
-  /* Grade sutil de fundo sci-fi e brilho cósmico sutil */
-  background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(ellipse at 15% 10%, rgba(177, 0, 255, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse at 85% 90%, rgba(0, 243, 255, 0.1) 0%, transparent 65%);
-  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================================================
-   Header Fixo Sci-Fi HUD (FR-006 / User Story 2)
-   Interface horizontal fixa, sem glassmorphism, estilo painel de comando.
+   Layout Principal de Duas Colunas (Dark Tech Dashboard)
    ========================================================================== */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: var(--bg-panel-hud-alpha);
-  border-bottom: 2px solid var(--hud-border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 243, 255, 0.25);
-  transition: all 0.3s ease;
-}
-
-/* Linha de acento decorativa neon no header */
-.site-header::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 10%;
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-purple), transparent);
-  box-shadow: var(--glow-cyan-box);
-  pointer-events: none;
-}
-
-.header-container {
-  width: 100%;
-  padding: 1rem 2.5rem;
+.layout-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-main);
 }
 
 /* ==========================================================================
-   Identidade Profissional à Esquerda (FR-007)
-   Anel tecnológico concêntrico/radar e tipografia HUD com text-shadow
+   Barra Lateral Fixa à Esquerda (~27%)
    ========================================================================== */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: transform 0.25s ease;
-}
-
-.brand:hover {
-  transform: scale(1.02);
-}
-
-/* Moldura e Anel Tecnológico com Box-shadow Concêntrico (FR-007) */
-.brand-avatar-wrapper {
-  position: relative;
-  width: 76px;
-  height: 76px;
-  min-width: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-avatar {
-  width: 72px;
-  height: 72px;
-  min-width: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: var(--bg-panel-hud);
-  /* Anel tecnológico luminoso com borda concêntrica e camadas de brilho neon */
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 
-    0 0 0 3px rgba(5, 5, 16, 0.9),
-    0 0 0 5px var(--neon-purple),
-    0 0 15px rgba(0, 243, 255, 0.7),
-    0 0 30px rgba(177, 0, 255, 0.4);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-}
-
-.brand:hover .brand-avatar {
-  border-color: var(--neon-cyan);
-  box-shadow: 
-    0 0 0 3px rgba(5, 5, 16, 0.9),
-    0 0 0 6px var(--neon-cyan),
-    0 0 20px rgba(0, 243, 255, 0.9),
-    0 0 40px rgba(177, 0, 255, 0.6);
-  transform: rotate(3deg);
-}
-
-.brand-text {
+.sidebar {
+  width: 27%;
+  min-width: 280px;
+  max-width: 420px;
+  height: 100vh;
+  flex-shrink: 0;
+  background-color: var(--bg-sidebar);
+  /* Camada escura com 40% de opacidade sobre a imagem */
+  background: linear-gradient(rgba(6, 20, 27, 0.6), rgba(6, 20, 27, 0.6)), url('/assets/images/fundo_menu.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.75rem;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho da Sidebar (Foto, Nome e Cargo) */
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Anel externo de 4-5px em gradiente com separação discreta (gap) */
+.profile-image-wrapper {
+  position: relative;
+  width: 142px;
+  height: 142px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--border-radius-circle);
+  background: linear-gradient(to bottom right, var(--accent-lime), var(--accent-cyan));
+  padding: 4px;
+  box-sizing: border-box;
 }
 
-.brand-name {
-  font-family: 'Orbitron', monospace, sans-serif;
-  font-size: 1.45rem;
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-circle);
+  object-fit: cover;
+  border: 3px solid var(--bg-sidebar);
+  background-color: var(--bg-cards);
+  display: block;
+}
+
+/* Nome em linha única */
+.profile-name {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
   color: var(--text-primary);
-  line-height: 1.1;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(224, 234, 255, 0.5);
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+  white-space: nowrap;
 }
 
-.brand-role {
-  font-family: 'Orbitron', monospace, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--neon-cyan);
-  letter-spacing: 0.2em;
+/* Cargo ampliado */
+.profile-role {
+  font-family: var(--font-tech);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-lime);
   text-transform: uppercase;
-  text-shadow: var(--text-glow-cyan);
+  letter-spacing: 0.16em;
+  text-align: center;
+  margin-bottom: 0.55rem;
+}
+
+/* Badge Open to Work com Indicador Circular Pulsante */
+.profile-badge {
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.8rem;
+  background-color: rgba(6, 20, 27, 0.65);
+  border: 1px solid rgba(163, 230, 53, 0.35);
+  border-radius: var(--border-radius-sm);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--accent-lime);
+  display: inline-block;
+  flex-shrink: 0;
+  animation: pulse-neon 2s infinite ease-in-out;
+}
+
+@keyframes pulse-neon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(163, 230, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(163, 230, 53, 0);
+  }
 }
 
 /* ==========================================================================
-   Menu de Navegação à Direita com Botões Chanfrados (FR-008)
-   clip-path: polygon() com cantos cortados e brilho intenso em hover
+   Menu Vertical de 6 Itens com Ícones SVG
    ========================================================================== */
-.nav-menu {
-  display: flex;
-  align-items: center;
+.sidebar-nav {
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 0 0.5rem;
 }
 
 .nav-list {
-  display: flex;
-  align-items: center;
   list-style: none;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.nav-item {
+  position: relative;
+  width: 100%;
 }
 
 .nav-link {
   position: relative;
-  display: inline-block;
-  font-family: 'Orbitron', monospace, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  background-color: var(--nav-link-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  font-weight: 500;
   text-decoration: none;
-  color: var(--text-primary);
-  padding: 0.6rem 1.25rem;
-  background: rgba(11, 15, 28, 0.85);
-  border: 1px solid var(--hud-border);
-  /* Cantos cortados chanfrados via clip-path */
-  clip-path: polygon(
-    10px 0%, 
-    100% 0%, 
-    100% calc(100% - 10px), 
-    calc(100% - 10px) 100%, 
-    0% 100%, 
-    0% 10px
-  );
-  box-shadow: inset 0 0 8px rgba(0, 243, 255, 0.15);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.nav-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--icon-color);
+  color: var(--icon-color);
+  fill: none;
+  flex-shrink: 0;
+  transition: stroke 0.2s ease, color 0.2s ease;
+}
+
+.nav-text {
+  flex: 1;
 }
 
 .nav-link:hover {
-  color: #ffffff;
-  background: rgba(0, 243, 255, 0.15);
-  border-color: var(--neon-cyan);
-  text-shadow: var(--text-glow-cyan);
-  box-shadow: var(--glow-cyan-hover);
-  transform: translateY(-2px);
+  border-color: var(--accent-lime);
+  color: var(--text-primary);
+  background-color: rgba(163, 230, 53, 0.05);
 }
 
+.nav-link:hover .nav-icon {
+  stroke: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Item Ativo do Menu: Fundo verde-limão, texto escuro e ícones adaptados
+   -------------------------------------------------------------------------- */
 .nav-link.active {
-  color: #ffffff;
-  background: rgba(177, 0, 255, 0.25);
-  border-color: var(--neon-purple);
-  text-shadow: var(--text-glow-purple);
-  box-shadow: var(--glow-purple-box);
+  background-color: var(--accent-lime);
+  color: var(--text-dark);
+  border-color: var(--accent-lime);
+  font-weight: 700;
 }
 
-.nav-link.active:hover {
-  background: rgba(177, 0, 255, 0.35);
-  box-shadow: var(--glow-purple-hover);
+.nav-link.active .nav-icon {
+  stroke: var(--bg-sidebar);
+  color: var(--bg-sidebar);
 }
 
-/* ==========================================================================
-   Botão Mobile Toggle Sci-Fi (FR-008 / FR-009)
-   ========================================================================== */
-.mobile-toggle {
-  display: none;
-  background: var(--bg-panel-hud);
-  border: 1px solid var(--neon-cyan);
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-  cursor: pointer;
-  padding: 0.65rem 0.85rem;
-  color: var(--neon-cyan);
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
-  transition: all 0.25s ease;
+/* Indicador circular externo à esquerda (pseudo-elemento ::before) */
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--accent-lime);
+  box-shadow: 0 0 6px rgba(163, 230, 53, 0.8);
 }
 
-.mobile-toggle:hover {
-  background: rgba(0, 243, 255, 0.2);
-  box-shadow: var(--glow-cyan-box);
-}
-
-.hamburger-line {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--neon-cyan);
-  margin: 4px 0;
-  box-shadow: 0 0 6px var(--neon-cyan);
-  transition: 0.3s ease;
+/* Indicador circular interno de status (pseudo-elemento ::after) */
+.nav-link.active::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--text-dark);
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
-   Conteúdo Principal
+   Área Principal à Direita (Rolagem Independente e Fundo Preto)
    ========================================================================== */
 .main-content {
   flex: 1;
-  max-width: 1200px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--bg-main);
+  padding: 3rem 4rem 4rem 4rem;
+  text-align: left;
+}
+
+.main-inner {
+  max-width: 1050px;
   width: 100%;
-  margin: 0 auto;
-  padding: 8.5rem 2rem 4rem 2rem;
+  margin: 0;
+}
+
+/* Linhas horizontais discretas ao final */
+.content-divider-lines {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.divider-line {
+  display: block;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.divider-line-full {
+  width: 100%;
+  opacity: 0.7;
+}
+
+.divider-line-partial {
+  width: 38%;
+  opacity: 0.35;
 }
 
 /* ==========================================================================
-   Painéis HUD / Cards Sci-Fi (FR-004)
-   Cantos cortados via clip-path, bordas neon e brilho tecnológico
-   Suporta tanto .hud-card quanto .glass-card (compatibilidade retroativa)
+   Cartões Retangulares Dark Tech (Substituição de Bento-Cards)
    ========================================================================== */
+.tech-card,
+.glass-card,
+.corporate-card,
 .hud-card,
-.glass-card {
+.bento-card {
   position: relative;
-  background: var(--bg-panel-hud-alpha);
-  border: 1px solid var(--hud-border);
-  /* Cantos cortados chanfrados estilizados nos 4 cantos */
-  clip-path: polygon(
-    18px 0%, 
-    calc(100% - 18px) 0%, 
-    100% 18px, 
-    100% calc(100% - 18px), 
-    calc(100% - 18px) 100%, 
-    18px 100%, 
-    0% calc(100% - 18px), 
-    0% 18px
-  );
-  padding: 2.75rem;
-  margin-bottom: 2.5rem;
-  box-shadow: var(--glow-cyan-box);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--bg-cards);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 2rem 2.25rem;
+  box-shadow: none; /* Remoção de sombras excessivas */
+  margin-bottom: 1.75rem;
+  text-align: left;
 }
 
-.hud-card:hover,
-.glass-card:hover {
-  border-color: var(--neon-cyan);
-  box-shadow: var(--glow-cyan-hover);
-  transform: translateY(-2px);
+.tech-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* Marcador decorativo de telemetria no canto superior */
-.hud-card::before,
-.glass-card::before {
-  content: 'SYSTEM // ONLINE';
-  position: absolute;
-  top: 10px;
-  right: 24px;
-  font-family: 'Orbitron', monospace, sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  color: var(--neon-purple);
-  text-shadow: var(--text-glow-purple);
-  pointer-events: none;
-}
-
-.hud-card h1,
-.glass-card h1 {
-  font-family: 'Orbitron', monospace, sans-serif;
-  font-size: 2.2rem;
+.tech-tag-badge {
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
   font-weight: 700;
+  color: var(--text-dark);
+  background-color: var(--accent-lime);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--border-radius-sm);
   letter-spacing: 0.05em;
-  color: var(--neon-cyan);
-  text-shadow: var(--text-glow-cyan);
-  margin-bottom: 1.25rem;
   text-transform: uppercase;
 }
 
-.hud-card p,
-.glass-card p {
-  font-size: 1.2rem;
+.tech-title {
+  font-family: var(--font-title);
+  font-size: 1.75rem;
+  font-weight: 800;
   color: var(--text-primary);
-  line-height: 1.8;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Tipografia Base em Conteúdos */
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--font-tech);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   Biografia Técnica (Página Sobre)
+   -------------------------------------------------------------------------- */
+.bio-paragraph {
+  font-family: var(--font-tech);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.bio-paragraph + .bio-paragraph {
+  margin-top: 1.35rem;
+}
+
+/* Ações e Botões Tecnológicos */
+.tech-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-tech-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-cards);
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+  border-radius: var(--border-radius-sm);
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-tech-primary:hover {
+  background-color: var(--accent-lime);
+  color: var(--text-dark);
+}
+
+.btn-tech-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-tech);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-tech-secondary:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Grades e Métricas
+   -------------------------------------------------------------------------- */
+.tech-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-value {
+  font-family: var(--font-title);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--accent-lime);
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.metric-label {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Pilares */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.pillar-card {
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 1.25rem 1.15rem;
+}
+
+.pillar-card-title {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pillar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--accent-lime);
+  flex-shrink: 0;
+}
+
+.pillar-card-desc {
+  font-family: var(--font-tech);
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Categorias Tech & Tags */
+.tech-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.category-box {
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 1.25rem;
+}
+
+.category-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.category-code {
+  font-family: var(--font-tech);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  background-color: var(--accent-lime);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.category-name {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--bg-cards);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.tech-chip:hover {
+  border-color: var(--accent-lime);
+  color: var(--accent-lime);
+}
+
+.tech-chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--border-radius-circle);
+  background-color: var(--accent-lime);
 }
 
 /* ==========================================================================
-   Responsividade Mobile (HUD Sci-Fi)
+   Responsividade Mobile com @media queries (Passo 6)
+   A barra lateral flui para o topo; menu e conteúdo se organizam sem quebra
    ========================================================================== */
-@media (max-width: 992px) {
-  .header-container {
-    padding: 0.9rem 1.5rem;
-  }
-
-  .brand-avatar-wrapper {
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
-  }
-
-  .brand-avatar {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-  }
-
-  .brand-name {
-    font-size: 1.15rem;
-  }
-
-  .brand-role {
-    font-size: 0.75rem;
-  }
-
-  .mobile-toggle {
-    display: flex;
+@media (max-width: 900px) {
+  .layout-wrapper {
     flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
 
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-panel-hud);
-    border-bottom: 2px solid var(--neon-cyan);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), var(--glow-cyan-box);
-    flex-direction: column;
-    padding: 1.5rem;
-    display: none;
-  }
-
-  .nav-menu.open {
-    display: flex;
-  }
-
-  .nav-list {
-    flex-direction: column;
+  .sidebar {
     width: 100%;
-    gap: 0.85rem;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.25rem 1.25rem;
   }
 
-  .nav-link {
-    width: 100%;
-    text-align: center;
-    padding: 0.85rem 1rem;
-    font-size: 0.95rem;
+  .profile-image-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
   }
 
-  .main-content {
-    padding-top: 7.5rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .hud-card,
-  .glass-card {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .hud-card h1,
-  .glass-card h1 {
+  .profile-name {
     font-size: 1.6rem;
   }
 
-  .hud-card p,
-  .glass-card p {
-    font-size: 1.05rem;
+  .sidebar-nav {
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+  .nav-link.active::before {
+    left: -6px;
+  }
+
+  .main-content {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 2rem 1.25rem 3.5rem 1.25rem;
+  }
+
+  .tech-card,
+  .glass-card,
+  .corporate-card,
+  .hud-card,
+  .bento-card {
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tech-title {
+    font-size: 1.45rem;
+  }
+
+  .tech-categories-grid,
+  .pillars-grid,
+  .tech-metrics-grid {
+    grid-template-columns: 1fr;
   }
 }

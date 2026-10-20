@@ -1,13 +1,302 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const contatosLinks = [
+  {
+    canal: 'E-mail',
+    rotulo: 'E-mail Profissional',
+    valor: 'Sergio.rib@live.com',
+    href: 'mailto:Sergio.rib@live.com',
+    acao: 'Enviar e-mail',
+    isExternal: false,
+    tipo: 'email'
+  },
+  {
+    canal: 'WhatsApp / Telefone',
+    rotulo: 'Telefone & WhatsApp',
+    valor: '(11) 98368-0639',
+    href: 'https://wa.me/5511983680639',
+    acao: 'Conversar no WhatsApp',
+    isExternal: true,
+    tipo: 'whatsapp'
+  },
+  {
+    canal: 'LinkedIn',
+    rotulo: 'Rede Profissional',
+    valor: '/in/sergio-ribeiro-cerqueira',
+    href: 'https://www.linkedin.com/in/sergio-ribeiro-cerqueira',
+    acao: 'Visitar perfil',
+    isExternal: true,
+    tipo: 'linkedin'
+  },
+  {
+    canal: 'GitHub',
+    rotulo: 'Repositórios & Código',
+    valor: '/sergiorib',
+    href: 'https://github.com/sergiorib',
+    acao: 'Explorar repositórios',
+    isExternal: true,
+    tipo: 'github'
+  }
+];
+
+const localizacao = {
+  rotulo: 'Localização Atual',
+  valor: 'Santo André - São Paulo',
+  descricao: 'Disponibilidade para atuações remotas e híbridas'
+};
 ---
 
-<Layout title="Contatos | Data Science Portfolio">
-  <section class="glass-card">
-    <h1>Entre em Contato</h1>
-    <p>
-      Sinta-se à vontade para se conectar profissionalmente através do LinkedIn, conferir repositórios 
-      no GitHub ou enviar uma mensagem para parcerias e projetos em Ciência de Dados.
-    </p>
-  </section>
+<Layout
+  title="Contatos | Data Science Portfolio"
+  description="Canais de comunicação, redes sociais e informações de contato de Sergio Ribeiro Cerqueira"
+>
+  <div class="contatos-container">
+    <!-- Cabeçalho da Página (FR-002) -->
+    <header class="page-header">
+      <h1 class="page-title">Contatos</h1>
+      <p class="page-subtitle">
+        Conecte-se comigo para oportunidades, parcerias ou discussões técnicas.
+      </p>
+    </header>
+
+    <!-- Grade de Botões-Cartão Interativos (FR-003, FR-004, FR-005) -->
+    <section class="contatos-grid" aria-label="Canais diretos de contato">
+      {
+        contatosLinks.map((item) => (
+          <a
+            href={item.href}
+            target={item.isExternal ? '_blank' : undefined}
+            rel={item.isExternal ? 'noopener noreferrer' : undefined}
+            class="contact-card"
+            aria-label={`${item.canal}: ${item.valor} (${item.acao})`}
+          >
+            <div class="card-icon-col" aria-hidden="true">
+              {item.tipo === 'email' && (
+                <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              )}
+              {item.tipo === 'whatsapp' && (
+                <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              )}
+              {item.tipo === 'linkedin' && (
+                <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              )}
+              {item.tipo === 'github' && (
+                <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+              )}
+            </div>
+
+            <div class="card-text-col">
+              <span class="contact-channel">{item.rotulo}</span>
+              <span class="contact-value">{item.valor}</span>
+              <span class="contact-action">{item.acao} &rarr;</span>
+            </div>
+          </a>
+        ))
+      }
+
+      <!-- Cartão Informativo de Localização (Apenas texto) -->
+      <div class="contact-card contact-card-static" role="region" aria-label="Informações de Localização">
+        <div class="card-icon-col" aria-hidden="true">
+          <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </div>
+
+        <div class="card-text-col">
+          <span class="contact-channel">{localizacao.rotulo}</span>
+          <span class="contact-value">{localizacao.valor}</span>
+          <span class="location-sub">{localizacao.descricao}</span>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>
+
+<style>
+  /* ==========================================================================
+     Container e Espaçamento da Página
+     ========================================================================== */
+  .contatos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ==========================================================================
+     Cabeçalho da Página (FR-002)
+     ========================================================================== */
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .page-title {
+    font-family: var(--font-title);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .page-subtitle {
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ==========================================================================
+     Grade de Cartões de Contato (FR-003, FR-004)
+     ========================================================================== */
+  .contatos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background-color: var(--bg-cards);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 1.6rem 1.75rem;
+    text-decoration: none;
+    box-shadow: none;
+    transition: all 0.25s ease;
+  }
+
+  .contact-card:not(.contact-card-static):hover {
+    border-color: var(--accent-lime);
+    transform: translateY(-2px);
+  }
+
+  .contact-card:not(.contact-card-static):hover .channel-icon {
+    color: var(--accent-lime);
+  }
+
+  .contact-card:not(.contact-card-static):hover .contact-action {
+    color: var(--accent-lime);
+    padding-left: 4px;
+  }
+
+  .contact-card:not(.contact-card-static):hover .contact-value {
+    color: var(--text-primary);
+  }
+
+  /* Ícone do Canal */
+  .card-icon-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
+  }
+
+  .channel-icon {
+    width: 22px;
+    height: 22px;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+  }
+
+  /* Coluna de Texto */
+  .card-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .contact-channel {
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    transition: color 0.2s ease;
+  }
+
+  .contact-action {
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .location-sub {
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    color: var(--accent-lime);
+    margin-top: 0.25rem;
+  }
+
+  /* Cartão Estático (Localização) */
+  .contact-card-static {
+    border-style: dashed;
+  }
+
+  .contact-card-static .channel-icon {
+    color: var(--accent-lime);
+  }
+
+  /* ==========================================================================
+     Responsividade Mobile
+     ========================================================================== */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 1.85rem;
+    }
+
+    .contatos-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .contact-card {
+      padding: 1.35rem 1.25rem;
+    }
+
+    .contact-value {
+      font-size: 1.05rem;
+      word-break: break-all;
+    }
+  }
+</style>

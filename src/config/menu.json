@@ -1,26 +1,22 @@
 [
   {
-    "title": "Início",
-    "url": "/"
-  },
-  {
-    "title": "Sobre",
+    "title": "Sobre mim",
     "url": "/sobre"
   },
   {
-    "title": "Experiências",
+    "title": "Experiências Profissionais",
     "url": "/experiencias"
   },
   {
-    "title": "Formação",
+    "title": "Formação Acadêmica",
     "url": "/formacao"
   },
   {
-    "title": "Portfólio",
+    "title": "Portfólio de Projetos",
     "url": "/portfolio"
   },
   {
-    "title": "Artigos",
+    "title": "Artigos e publicações",
     "url": "/artigos"
   },
   {

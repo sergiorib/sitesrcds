@@ -1,13 +1,207 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const formacoes = [
+  {
+    curso: 'Superior em Ciência de Dados',
+    instituicao: 'Universidade Estácio de Sá',
+    periodo: '2024 a 2026 (em andamento)',
+    status: 'Em andamento'
+  },
+  {
+    curso: 'Superior em Análise e Desenvolvimento de Sistemas',
+    instituicao: 'Centro Universitário Estácio Radial de SP',
+    periodo: '2013 a 2016',
+    status: 'Concluído'
+  }
+];
 ---
 
-<Layout title="Formação | Data Science Portfolio">
-  <section class="glass-card">
-    <h1>Formação Acadêmica & Certificações</h1>
-    <p>
-      Graduações, pós-graduações, cursos de especialização e certificações técnicas nas áreas de 
-      Ciência da Computação, Estatística, Machine Learning e Cloud Computing.
-    </p>
-  </section>
+<Layout
+  title="Formação Acadêmica | Data Science Portfolio"
+  description="Histórico acadêmico e formação de ensino superior de Sergio Ribeiro Cerqueira"
+>
+  <div class="formacao-container">
+    <!-- Cabeçalho da Página -->
+    <header class="page-header">
+      <h1 class="page-title">Formação Acadêmica</h1>
+    </header>
+
+    <!-- Lista de Cartões Horizontais de Formação -->
+    <section class="formacao-list" aria-label="Lista de Cursos e Graduações">
+      {
+        formacoes.map((item) => (
+          <article class="formacao-card">
+            <div class="card-main-info">
+              <div class="curso-header">
+                <span class="tech-icon-dot" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </span>
+                <h2 class="curso-title">{item.curso}</h2>
+              </div>
+              <p class="instituicao-name">{item.instituicao}</p>
+            </div>
+
+            <div class="card-period-wrapper">
+              <span class="period-badge">{item.periodo}</span>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+  </div>
 </Layout>
+
+<style>
+  /* ==========================================================================
+     Container e Espaçamento da Página
+     ========================================================================== */
+  .formacao-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ==========================================================================
+     Cabeçalho da Página
+     ========================================================================== */
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-title);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* ==========================================================================
+     Lista e Cartões Horizontais (FR-003, FR-004)
+     ========================================================================== */
+  .formacao-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .formacao-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    background-color: var(--bg-cards);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 1.6rem 2rem;
+    box-shadow: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .formacao-card:hover {
+    border-color: var(--accent-lime);
+    transform: translateY(-1px);
+  }
+
+  .card-main-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .curso-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tech-icon-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-lime);
+    flex-shrink: 0;
+  }
+
+  .curso-title {
+    font-family: var(--font-title);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .instituicao-name {
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-lime);
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .card-period-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .period-badge {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 0.45rem 0.9rem;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================================
+     Responsividade Mobile
+     ========================================================================== */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 1.85rem;
+    }
+
+    .formacao-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.35rem 1.25rem;
+    }
+
+    .curso-title {
+      font-size: 1.15rem;
+    }
+
+    .instituicao-name {
+      padding-left: 0;
+    }
+
+    .card-period-wrapper {
+      width: 100%;
+    }
+
+    .period-badge {
+      width: 100%;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+  }
+</style>
