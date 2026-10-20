@@ -1,13 +1,283 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const experiencias = [
+  {
+    empresa: 'Frete.com',
+    cargo: 'Analista de BI',
+    meta: 'PJ - Remoto | Logística | mai 25 a mar 26 (10 meses)',
+    descricao: 'Reestruturação de ETL, redução de tempo de preparação em 80%.',
+    tecnologias: ['SQL Server', 'Python', 'DuckDB', 'N8N', 'DBT', 'etc']
+  },
+  {
+    empresa: 'Verity Consultoria',
+    cargo: 'Analista de sistemas e desenvolvedor',
+    meta: 'CLT - Remoto | Seguros | mar 23 a mar 25 (2 anos)',
+    descricao: 'Modelagem de dados para seguro agrícola, integração de sistemas legados.',
+    tecnologias: ['Progress 4GL', 'SQL', 'Java', 'APIs', 'etc']
+  },
+  {
+    empresa: 'Arezzo&Co',
+    cargo: 'Analista de dados',
+    meta: 'PJ - Remoto | Varejo | mar/2021 a out/2022 (1 ano e 6 meses)',
+    descricao: 'Soluções analíticas Databricks, visibilidade sobre vendas.',
+    tecnologias: ['Databricks', 'SQL', 'PySpark', 'Power BI', 'etc']
+  },
+  {
+    empresa: 'CVC Viagens e Turismo',
+    cargo: 'Especialista em TI',
+    meta: 'CLT - Presencial | Turismo | jan/2018 a jan/2021 (4 anos)',
+    descricao: 'Sustentação Oracle EBS, observabilidade Zabbix/Grafana, redução de custos em 60%.',
+    tecnologias: ['Oracle EBS', 'SQL', 'Grafana', 'AWS', 'etc']
+  },
+  {
+    empresa: 'Submarino e B2W Digital',
+    cargo: 'Analista de sistemas / Líder técnico',
+    meta: 'CLT - Presencial | Varejo | jan/2015 a dez/2017 (3 anos)',
+    descricao: 'Integração GDS Amadeus, soluções da área financeira.',
+    tecnologias: ['SQL Server', 'Oracle', 'C#']
+  }
+];
 ---
 
-<Layout title="Experiências | Data Science Portfolio">
-  <section class="glass-card">
-    <h1>Experiências Profissionais</h1>
-    <p>
-      Histórico de atuações em projetos de ponta, liderando iniciativas de inteligência artificial,
-      pipelines de Big Data e modelos preditivos de impacto em larga escala.
-    </p>
-  </section>
+<Layout
+  title="Experiências Profissionais | Data Science Portfolio"
+  description="Histórico profissional e atuações técnicas em Analytics, Big Data e Engenharia de Sergio Ribeiro Cerqueira"
+>
+  <div class="experiencias-container">
+    <!-- Cabeçalho da Página -->
+    <header class="page-header">
+      <h1 class="page-title">Experiências Profissionais</h1>
+    </header>
+
+    <!-- Lista de Cartões de Experiência Sequenciais -->
+    <section class="experiencias-list" aria-label="Histórico de Experiências Profissionais">
+      {
+        experiencias.map((item) => (
+          <article class="experience-card">
+            <header class="card-header">
+              <div class="company-row">
+                <span class="status-indicator" aria-hidden="true"></span>
+                <h2 class="company-name">{item.empresa}</h2>
+              </div>
+              <div class="role-wrapper">
+                <h3 class="role-title">{item.cargo}</h3>
+                <span class="role-meta">{item.meta}</span>
+              </div>
+            </header>
+
+            <div class="card-body">
+              <p class="experience-desc">{item.descricao}</p>
+            </div>
+
+            <footer class="card-footer">
+              <span class="tech-label">STACK &amp; FERRAMENTAS:</span>
+              <ul class="tech-pills-list" aria-label={`Tecnologias utilizadas na ${item.empresa}`}>
+                {
+                  item.tecnologias.map((tech) => (
+                    <li class="tech-pill">{tech}</li>
+                  ))
+                }
+              </ul>
+            </footer>
+          </article>
+        ))
+      }
+    </section>
+  </div>
 </Layout>
+
+<style>
+  /* ==========================================================================
+     Container e Espaçamento da Página
+     ========================================================================== */
+  .experiencias-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ==========================================================================
+     Cabeçalho da Página
+     ========================================================================== */
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--font-title);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* ==========================================================================
+     Lista de Experiências (FR-003, FR-004)
+     ========================================================================== */
+  .experiencias-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 100%;
+  }
+
+  .experience-card {
+    background-color: var(--bg-cards);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 2rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .experience-card:hover {
+    border-color: var(--accent-lime);
+    transform: translateY(-1px);
+  }
+
+  /* Header do Card */
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .company-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--accent-lime);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(163, 230, 53, 0.6);
+  }
+
+  .company-name {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-lime);
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  .role-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .role-title {
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .role-meta {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Corpo e Descrição */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .experience-desc {
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Rodapé e Tech Pills */
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+  }
+
+  .tech-label {
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .tech-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tech-pill {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .tech-pill:hover {
+    border-color: var(--accent-lime);
+    color: var(--accent-lime);
+  }
+
+  /* ==========================================================================
+     Responsividade Mobile
+     ========================================================================== */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 1.85rem;
+    }
+
+    .experience-card {
+      padding: 1.5rem 1.25rem;
+      gap: 1rem;
+    }
+
+    .company-name {
+      font-size: 1.3rem;
+    }
+
+    .role-title {
+      font-size: 1.05rem;
+    }
+
+    .role-meta {
+      font-size: 0.8rem;
+    }
+  }
+</style>

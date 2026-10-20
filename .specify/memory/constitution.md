@@ -3,30 +3,29 @@
 ## Core Principles
 
 ### I. Stack Tecnológica (Astro + Vanilla)
-O projeto utilizará o framework **Astro** EXCLUSIVAMENTE para a estruturação de componentes (Layouts), sistema de rotas (file-based routing) e build estático. 
-- O estilo DEVE permanecer em CSS3 puro (Vanilla), sem Tailwind ou pré-processadores.
-- A interatividade no navegador (client-side) DEVE permanecer em Vanilla JS (ES6+).
-- É estritamente proibida a instalação de integrações de UI como React, Vue, Svelte ou bibliotecas de componentes externas.
+O projeto utilizará o framework **Astro** EXCLUSIVAMENTE para a estruturação de componentes (Layouts), sistema de rotas (file-based routing) e build estático[cite: 1]. 
+- O estilo DEVE permanecer em CSS3 puro (Vanilla)[cite: 1].
+- A interatividade no navegador DEVE permanecer em Vanilla JS[cite: 1].
+- Proibida a instalação de integrações de UI externas (React, Tailwind, etc)[cite: 1].
 
 ### II. Separação de Preocupações (Astro Components)
-Os arquivos `.astro` devem ser usados para encapsular o HTML e importar os estilos/scripts. O CSS global e a lógica de UI devem continuar isolados em arquivos dedicados em `public/assets/css/` e `public/assets/js/`.
+Os arquivos `.astro` devem encapsular o HTML[cite: 1]. O CSS global e a lógica de UI ficam em `public/assets/css/` e `public/assets/js/`[cite: 1].
 
-### III. Design e Identidade Visual (Sci-Fi / Cyberpunk HUD)
-O design deve adotar uma estética futurista "Sci-Fi / Cyberpunk HUD". 
-- **Fundo**: Temas escuros profundos (Dark Mode absoluto) com elementos de interface que remetem a painéis de dados.
-- **Geometria**: Uso intensivo de propriedades como `clip-path: polygon()` para criar botões, cards e contêineres com cantos cortados/chanfrados.
-- **Iluminação (Neon)**: As bordas dos elementos ativos, cards e botões devem emitir brilho (glow) utilizando múltiplas camadas de `box-shadow` e `text-shadow` em tons de Ciano e Roxo. É estritamente proibido o uso de Glassmorphism (efeito de vidro fosco).
+### III. Design e Identidade Visual (Dark Tech Dashboard)
+O design expressa uma estética técnica, focada e imersiva.
+- **Estética**: Estilo interface de desenvolvedor. Minimalista, livre de gradientes, sombras pesadas ou decorações desnecessárias.
+- **Estrutura**: Layout dividido em duas áreas: Barra lateral fixa à esquerda (aprox. 27% da tela) com fundo azul-petróleo muito escuro e linha divisória sutil, e Área principal à direita rolável com fundo preto absoluto.
+- **Elevação e Formas**: Formatos retangulares com bordas finas em cinza-azulado escuro e cantos discretamente arredondados. 
 
-### IV. Sistema de Cores e Theming (Single Source of Truth)
-Todas as cores e gradientes do site DEVEM ser obrigatoriamente consumidos através de variáveis nativas do CSS (CSS Custom Properties). A única fonte de verdade para a paleta de cores é o arquivo `public/assets/css/colors.css`. É terminantemente proibido o uso de cores "hardcoded" diretamente nos outros arquivos de estilo.
+### IV. Sistema de Cores e Tipografia (Single Source of Truth)
+A combinação tipográfica requer o uso de fonte condensada robusta/negrito para títulos e nome, e fonte monoespaçada/tecnológica compacta para textos descritivos, menus e listas.
+Todas as cores DEVEM ser consumidas do arquivo `public/assets/css/colors.css`[cite: 1].
+- **Regra de Contraste**: Fundo preto para conteúdo, azul-petróleo muito escuro para a sidebar, azul-petróleo escuro para cartões. Textos principais em branco ou cinza muito claro. Textos secundários em cinza-claro. Cor de destaque exclusiva em verde-limão vibrante.
 
 ## Padrões de Arquitetura de Conteúdo
-A arquitetura deve ser modular e baseada no sistema de rotas do Astro (File-based Routing). A criação de novas pastas e arquivos `.astro` dentro de `src/pages/` gerará automaticamente as páginas do site. O site compartilhará um Layout comum que contém o menu principal e a identidade visual fixos.
+A arquitetura baseia-se no sistema de rotas do Astro (File-based Routing)[cite: 1].
 
 ## Development Workflow & Git Conventions
-O controle de versão (Git), a criação de branches, commits, Issues e Pull Requests são de responsabilidade EXCLUSIVA do desenvolvedor humano. O agente de IA NÃO DEVE executar comandos `git` ou `gh` em nenhuma circunstância. A atuação da IA é estritamente restrita a ler as especificações e gerar/modificar os arquivos de código e configuração localmente.
+O controle de versão (Git) é de responsabilidade EXCLUSIVA do desenvolvedor humano[cite: 1]. O agente NÃO DEVE executar comandos Git[cite: 1].
 
-## Governance
-Esta Constituição atua como a lei primária do projeto e sobrepõe quaisquer outras práticas de desenvolvimento ou sugestões da IA. O agente de desenvolvimento (Antigravity/GSK) DEVE validar a conformidade do código contra este documento antes de finalizar qualquer arquivo. 
-
-**Version**: 1.3.0 | **Ratified**: 2026-10-13 | **Last Amended**: 2026-10-13
+**Version**: 4.0.0 | **Ratified**: Atual

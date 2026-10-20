@@ -1,52 +1,67 @@
 /* ==========================================================================
-   CSS Custom Properties - Sci-Fi / Cyberpunk HUD Palette (Single Source of Truth)
-   Paleta oficial baseada em tons escuros espaciais e emissão neon Ciano e Roxo.
+   CSS Custom Properties - Dark Tech Dashboard (Single Source of Truth)
+   Identidade Visual: Dark Tech / Developer Dashboard
+   Constituição v4.0.0 | specs/001-estrutura-base/spec.md
    ========================================================================== */
+
 :root {
-  /* Cores Base do Sistema */
-  --bg-deep-space: #050510;       /* Fundo principal cósmico ultra-escuro */
-  --bg-panel-hud: #0b0f1c;        /* Fundo base dos painéis e cards HUD */
-  --bg-panel-hud-alpha: rgba(11, 15, 28, 0.92); /* Fundo com opacidade para HUD */
-  
-  /* Neons Primário e Secundário */
-  --neon-cyan: #00f3ff;           /* Ciano Neon vibrante (radar, foco, bordas principais) */
-  --neon-purple: #b100ff;         /* Roxo Neon pulsante (acentuações e contrastes) */
-  --neon-cyan-dim: rgba(0, 243, 255, 0.2);
-  --neon-purple-dim: rgba(177, 0, 255, 0.2);
-  
-  /* Bordas Tecnológicas */
-  --hud-border: rgba(0, 243, 255, 0.4);
-  --hud-border-bright: #00f3ff;
-  --hud-border-purple: rgba(177, 0, 255, 0.5);
+  /* --------------------------------------------------------------------------
+     1. Cores Fundamentais (Palette Primitives)
+     -------------------------------------------------------------------------- */
+  --bg-main: #050505;              /* Fundo principal: Preto quase absoluto */
+  --bg-sidebar: #06141b;           /* Fundo da barra lateral: Azul-petróleo muito escuro */
+  --bg-sidebar-rgb: 6, 20, 27;     /* Componentes RGB de --bg-sidebar para overlays translúcidos */
+  --bg-sidebar-overlay: rgba(6, 20, 27, 0.85); /* Overlay escuro da barra lateral (85% opacidade - FR-008) */
+  --bg-cards: #0a1f26;             /* Fundo de cartões/painéis: Azul-petróleo escuro */
+  --accent-lime: #a3e635;          /* Destaque/Acento: Verde-limão vibrante */
+  --accent-lime2: #d4d700;         /* Destaque/Acento: Verde-limão menos vibrante */
+  --accent-cyan: #06b6d4;          /* Ciano para gradiente */
+  --icon-color: #d1d5db;           /* Cinza-claro para ícones */
+  --border-color: #2a3b45;         /* Bordas e divisores: Cinza-azulado escuro */
 
-  /* Tipografia e Textos */
-  --text-primary: #e0eaff;        /* Texto principal legível de alta clareza */
-  --text-muted: #8295b5;          /* Texto secundário / dados de telemetria */
-  --text-glow-cyan: 0 0 8px rgba(0, 243, 255, 0.8), 0 0 16px rgba(0, 243, 255, 0.4);
-  --text-glow-purple: 0 0 8px rgba(177, 0, 255, 0.8), 0 0 16px rgba(177, 0, 255, 0.4);
+  /* --------------------------------------------------------------------------
+     2. Tipografia e Cores de Texto
+     -------------------------------------------------------------------------- */
+  --text-primary: #f8f8f8;         /* Branco / cinza muito claro para títulos e cabeçalhos */
+  --text-secondary: #c0c0c0;       /* Cinza-claro para textos descritivos e leitura contínua */
+  --text-dark: #050505;            /* Texto escuro para contrastar sobre elementos em verde-limão */
+  --text-muted: #627d8a;           /* Texto atenuado para notas e metadados */
 
-  /* Efeitos de Iluminação e Glows Sci-Fi (múltiplas camadas de box-shadow) */
-  --glow-cyan-box: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.15);
-  --glow-cyan-hover: 0 0 15px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.25);
-  --glow-purple-box: 0 0 10px rgba(177, 0, 255, 0.5), 0 0 25px rgba(177, 0, 255, 0.3), inset 0 0 15px rgba(177, 0, 255, 0.15);
-  --glow-purple-hover: 0 0 15px rgba(177, 0, 255, 0.85), 0 0 35px rgba(177, 0, 255, 0.5), inset 0 0 20px rgba(177, 0, 255, 0.3);
+  /* --------------------------------------------------------------------------
+     3. Mapeamentos Semânticos de Superfícies & Layout
+     -------------------------------------------------------------------------- */
+  --bg-primary: var(--bg-main);
+  --bg-card: var(--bg-cards);
+  --accent-color: var(--accent-lime);
+  --accent-hover: #bbf451;
+  --border-subtle: #162a34;
+  --border-divider: #15252d;
 
-  /* Mapeamento Semântico para Consistência do Site */
-  --bg-primary: var(--bg-deep-space);
-  --bg-secondary: var(--bg-panel-hud);
-  --text-main: var(--text-primary);
-  --text-heading: var(--neon-cyan);
-  
-  /* Identidade Profissional (Brand) */
-  --brand-name-color: var(--text-primary);
-  --brand-role-color: var(--neon-cyan);
-  --brand-avatar-border: var(--neon-cyan);
-  --brand-avatar-border-hover: var(--neon-purple);
+  /* --------------------------------------------------------------------------
+     4. Navegação & Estados Interativos
+     -------------------------------------------------------------------------- */
+  --nav-link-bg: rgba(6, 20, 27, 0.5);
+  --nav-link-color: var(--text-secondary);
+  --nav-link-border: var(--border-color);
+  --nav-link-hover-border: var(--accent-lime);
+  --nav-link-hover-color: var(--text-primary);
+  --nav-link-active-bg: var(--accent-lime);
+  --nav-link-active-color: var(--text-dark);
+  --nav-link-active-border: var(--accent-lime);
+  --nav-indicator-color: var(--accent-lime);
 
-  /* Navegação e Links */
-  --nav-link-color: var(--text-primary);
-  --nav-link-hover: var(--neon-cyan);
-  --nav-link-active: #ffffff;
-  --nav-border-active: var(--neon-cyan);
-  --nav-toggle-color: var(--neon-cyan);
+  /* --------------------------------------------------------------------------
+     5. Geometria e Formas (Estilo Tech Dashboard)
+     Formatos retangulares, bordas finas e cantos discretamente arredondados
+     -------------------------------------------------------------------------- */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-circle: 50%;
+
+  /* --------------------------------------------------------------------------
+     6. Tipografia (Famílias)
+     -------------------------------------------------------------------------- */
+  --font-title: 'Roboto Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-tech: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }

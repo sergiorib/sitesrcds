@@ -3,12 +3,27 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Início | Data Science Portfolio">
-  <section class="glass-card">
-    <h1>Bem-vindo ao meu Portfólio de Data Science</h1>
+  <section class="tech-card">
+    <div class="tech-card-header">
+      <span class="tech-tag-badge">SYS // 00</span>
+      <h2 class="tech-title">BEM-VINDO AO MEU PORTFÓLIO DE DATA SCIENCE</h2>
+    </div>
     <p>
       Espaço dedicado à apresentação de projetos em Machine Learning, Inteligência Artificial, 
-      Engenharia de Dados e análises estatísticas. Navegue pelos links do cabeçalho para conhecer 
-      minhas experiências, artigos técnicos e formações.
+      Engenharia de Dados e análises estatísticas. Navegue pelos links da barra lateral para conhecer 
+      minhas experiências, artigos técnicos, formações e projetos.
     </p>
+    <div class="tech-actions">
+      <a href="/sobre" class="btn-tech-primary">
+        <span>Conhecer Mais Sobre Mim</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <a href="/portfolio" class="btn-tech-secondary">
+        <span>Ver Portfólio</span>
+      </a>
+    </div>
   </section>
 </Layout>

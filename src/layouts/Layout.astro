@@ -6,7 +6,11 @@ interface Props {
   description?: string;
 }
 
-const { title = 'Data Science Portfolio', description = 'Portfólio de Ciência de Dados e Inteligência Artificial' } = Astro.props;
+const {
+  title = 'Data Science Portfolio',
+  description = 'Portfólio de Ciência de Dados, Engenharia de Dados e Inteligência Artificial'
+} = Astro.props;
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
@@ -17,53 +21,101 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <!-- Tipografia Tecnológica Sci-Fi (Orbitron e Rajdhani) -->
+    <!-- Tipografia Dark Tech: Roboto Condensed (Títulos/Nome) e JetBrains Mono (Textos/Menu) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Importação da única fonte de verdade de cores e estilos Sci-Fi HUD -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Roboto+Condensed:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Sistema de Cores e Estilos Dark Tech Dashboard -->
     <link rel="stylesheet" href="/assets/css/colors.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body>
-    <!-- Cabeçalho fixo Sci-Fi / Cyberpunk HUD -->
-    <header class="site-header">
-      <div class="header-container">
-        <!-- Identidade profissional à esquerda com anel tecnológico -->
-        <a href="/" class="brand" aria-label="Página Inicial - Sergio Ribeiro">
-          <div class="brand-avatar-wrapper">
+    <div class="layout-wrapper">
+      <!-- Barra lateral fixa à esquerda (~27%) com imagem de fundo e overlay (FR-008) -->
+      <aside class="sidebar" aria-label="Perfil e Navegação">
+        <div class="sidebar-header">
+          <!-- Foto de perfil com anel externo em gradiente e separação discreta -->
+          <div class="profile-image-wrapper">
             <img
               src="/assets/images/foto.jpg"
-              alt="Foto do Perfil de Sergio Ribeiro"
-              class="brand-avatar"
+              alt="Foto de perfil de Sérgio Ribeiro Cerqueira"
+              class="profile-image"
+              width="132"
+              height="132"
             />
           </div>
-          <div class="brand-text">
-            <span class="brand-name">Sergio Ribeiro</span>
-            <span class="brand-role">Data Scientist</span>
+
+          <!-- Nome em linha única -->
+          <h1 class="profile-name">Sérgio Ribeiro Cerqueira</h1>
+
+          <!-- Cargo em destaque -->
+          <p class="profile-role">CIENTISTA DE DADOS</p>
+
+          <!-- Badge Open to Work com indicador circular pulsante -->
+          <div class="profile-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-text">OPEN TO WORK !</span>
           </div>
-        </a>
+        </div>
 
-        <!-- Botão retrátil mobile Sci-Fi -->
-        <button class="mobile-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-
-        <!-- Menu de navegação à direita com botões geométricos neon -->
-        <nav class="nav-menu">
+        <!-- Menu vertical de 6 itens com ícones SVG lineares -->
+        <nav class="sidebar-nav" aria-label="Navegação Principal">
           <ul class="nav-list">
             {
               menuItems.map((item) => {
-                const isActive = (item.url === '/' && currentPath === '/') || (item.url !== '/' && currentPath === item.url);
+                const isActive = (item.url === currentPath) || (item.url === '/sobre' && currentPath === '/');
                 return (
                   <li class="nav-item">
                     <a
                       href={item.url}
                       class={`nav-link ${isActive ? 'active' : ''}`}
+                      aria-current={isActive ? 'page' : undefined}
                     >
-                      {item.title}
+                      <span class="nav-icon-wrapper" aria-hidden="true">
+                        {item.url === '/sobre' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                          </svg>
+                        )}
+                        {item.url === '/experiencias' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="14" x="2" y="7" rx="2" />
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                          </svg>
+                        )}
+                        {item.url === '/formacao' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+                          </svg>
+                        )}
+                        {item.url === '/portfolio' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+                            <path d="M2 10h20" />
+                          </svg>
+                        )}
+                        {item.url === '/artigos' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" x2="8" y1="13" y2="13" />
+                            <line x1="16" x2="8" y1="17" y2="17" />
+                            <line x1="10" x2="8" y1="9" y2="9" />
+                          </svg>
+                        )}
+                        {item.url === '/contatos' && (
+                          <svg class="nav-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                          </svg>
+                        )}
+                      </span>
+                      <span class="nav-text">{item.title}</span>
                     </a>
                   </li>
                 );
@@ -71,13 +123,21 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
             }
           </ul>
         </nav>
-      </div>
-    </header>
+      </aside>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-      <slot />
-    </main>
+      <!-- Área principal à direita com rolagem independente e fundo preto -->
+      <main class="main-content" id="main-content">
+        <div class="main-inner">
+          <slot />
+
+          <!-- Linhas horizontais discretas na parte inferior -->
+          <footer class="content-divider-lines" aria-hidden="true">
+            <span class="divider-line divider-line-full"></span>
+            <span class="divider-line divider-line-partial"></span>
+          </footer>
+        </div>
+      </main>
+    </div>
 
     <!-- Script de interatividade client-side puro -->
     <script src="/assets/js/app.js" is:inline></script>
